@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DeleteOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material'
 import { Button, Grid, IconButton, TextField, Typography } from '@mui/material'
 import Swal from 'sweetalert2'
+import moment from 'moment'
 
 import { useForm } from '../../hooks/useForm'
 import { ImageGallery } from '../components'
@@ -14,8 +15,7 @@ export const NoteView = () => {
   const { body, title, date, onInputChange, formState } = useForm(note)
 
   const dateString = useMemo(() => {
-    const newDate = new Date(date).toUTCString()
-
+    const newDate = moment().format('MMMM Do YYYY, h:mm:ss a')
     return newDate
   }, [date])
 

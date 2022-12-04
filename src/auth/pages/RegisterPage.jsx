@@ -6,11 +6,12 @@ import { AuthLayout } from '../layout/AuthLayout'
 
 import { useForm } from '../../hooks'
 import { startCreatingUserWithEmailPassword } from '../../store/auth'
+import { HomeNavbar } from '../../journal/components/HomeNavbar'
 
 const formData = {
-  email: 'ks.study.22@gmail.com',
-  password: '123456',
-  displayName: 'Kevin José',
+  email: '',
+  password: '',
+  displayName: '',
 }
 
 const formValidations = {
@@ -48,69 +49,65 @@ export const RegisterPage = () => {
   }
 
   return (
-    <AuthLayout title='Crear cuenta'>
-      <form onSubmit={onSubmit} className='animate__animated animate__fadeIn animate__faster'>
-        <Grid container>
-          <Grid item xs={12} sx={{ mt: 2 }}>
-            <TextField
-              label='Nombre completo'
-              type='text'
-              placeholder='Kevin Sandoval'
-              fullWidth
-              name='displayName'
-              value={displayName}
-              onChange={onInputChange}
-              error={!!displayNameValid && formSubmitted}
-              helperText={displayNameValid}
-            />
-          </Grid>
-          <Grid item xs={12} sx={{ mt: 2 }}>
-            <TextField
-              label='Correo'
-              type='email'
-              placeholder='correo@gmail.com'
-              fullWidth
-              name='email'
-              value={email}
-              onChange={onInputChange}
-              error={!!emailValid && formSubmitted}
-              helperText={emailValid}
-            />
-          </Grid>
-          <Grid item xs={12} sx={{ mt: 2 }}>
-            <TextField
-              label='Contraseña'
-              type='password'
-              placeholder='contraseña'
-              fullWidth
-              name='password'
-              value={password}
-              onChange={onInputChange}
-              error={!!passwordValid && formSubmitted}
-              helperText={passwordValid}
-            />
-          </Grid>
-
-          <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
-            <Grid item xs={12} display={!!errorMessage ? '' : 'none'}>
-              <Alert severity='error'>{errorMessage}</Alert>
+    <div>
+      <HomeNavbar />
+      <AuthLayout title='Register'>
+        <form onSubmit={onSubmit} className='animate__animated animate__fadeIn animate__faster'>
+          <Grid container>
+            <Grid item xs={12} sx={{ mt: 2 }}>
+              <TextField
+                label='Nombre completo'
+                type='text'
+                placeholder='Kevin Sandoval'
+                fullWidth
+                name='displayName'
+                value={displayName}
+                onChange={onInputChange}
+                error={!!displayNameValid && formSubmitted}
+                helperText={displayNameValid}
+              />
+            </Grid>
+            <Grid item xs={12} sx={{ mt: 2 }}>
+              <TextField
+                label='Correo'
+                type='email'
+                placeholder='correo@gmail.com'
+                fullWidth
+                name='email'
+                value={email}
+                onChange={onInputChange}
+                error={!!emailValid && formSubmitted}
+                helperText={emailValid}
+              />
+            </Grid>
+            <Grid item xs={12} sx={{ mt: 2 }}>
+              <TextField
+                label='Contraseña'
+                type='password'
+                placeholder='contraseña'
+                fullWidth
+                name='password'
+                value={password}
+                onChange={onInputChange}
+                error={!!passwordValid && formSubmitted}
+                helperText={passwordValid}
+              />
             </Grid>
 
-            <Grid item xs={12}>
-              <Button disabled={isCheckingAuthentication} variant='contained' fullWidth type='submit'>
-                Crear cuenta
-              </Button>
+            <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
+              <Grid item xs={12} display={!!errorMessage ? '' : 'none'}>
+                <Alert severity='error'>{errorMessage}</Alert>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Button disabled={isCheckingAuthentication} variant='contained' fullWidth type='submit'>
+                  Crear cuenta
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
-
-          <Grid container direction='row' justifyContent='end'>
-            <Typography sx={{ mr: 1 }}>¿Ya tienes cuenta?</Typography>
-            <Link component={RouterLink} color='inherit' to='/auth/login'>
-              Ingresar
-            </Link>
-          </Grid>
-        </Grid>
-      </form>
-    </AuthLayout>
+        </form>
+      </AuthLayout>
+    </div>
   )
 }
